@@ -1,0 +1,238 @@
+Northern City
+Java Programming Basic
+-----------------------------
+1. File
+2. Interface
+3. Lambda
+
+-----------------------------
+
+File
+
+Write to file ( Create a new file )
+--------------------------------
+
+FileWriter fw=new FileWriter("students.txt",false);
+PrintWriter pw=new PrintWriter(fw);
+
+OR
+
+PrintWriter pw=new PrintWriter(new FileWriter("students.txt",false));
+
+
+Example :
+
+String id="1000";
+String name="mg mg";
+String address="hledan";
+
+FileWriter fw=new FileWriter("students.txt",false);
+PrintWriter pw=new PrintWriter(fw);
+
+ 	pw.println(id);
+ 	pw.println(name);
+	pw.println(address);
+
+pw.close();
+fw.close();
+
+
+student.txt
+
+1000
+mg mg
+heldan
+
+=========================
+
+FileReader fr=new FileReader("students.txt");
+BufferedReader br=new BufferedReader(fr);
+
+OR
+
+BufferedReader br=new BufferedReader(new FileReader("students.txt");
+
+
+=========================
+
+
+Example :
+
+LinkedList<String> data=new LinkedList<String>();
+
+FileReader fr=new FileReader("students.txt");
+BufferedReader br=new BufferedReader(fr);
+
+String line;
+
+while((line=br.readLine())!=null){
+       
+       data.add(line);
+}
+
+
+br.close();
+fr.close();
+
+======================
+
+
+view data
+
+for(String str:data){
+    System.out.println(str);
+}
+
+
+
+==============
+
+File Practice
+------------
+MENU
+------------
+Sein Gay Har
+-----------
+[1] Save Items
+[2] View Items
+----------
+[3] Exit Program
+---------------
+
+
+Item:
+   id,name,price
+============================
+
+
+Interface
+-------------
+
+class Exercise1{
+
+	properties;
+	setters & getters (encapsulations)
+	constructors(polymorphism)
+	toString
+
+}
+
+interface Math{
+	public void add(int x,int y);
+	public void subtract(int x,int y);
+}
+
+
+class App1 implements Math{
+
+	@Overrite
+	public void add(int x,int y){
+
+	}
+	@Overrite
+	public void subtract(int x,int y){
+
+	}
+
+}
+
+
+===================
+
+Interface Practice 1
+---------------------
+  MENU
+---------------------
+[1] Add Numbers
+[2] Subtract Numbers
+[3] Multiply Numbers
+[4] Divide Numbers
+------------------
+[5] Exit 
+----------------------
+
+
+
+Interface Math{
+   public int calc(int x,int y);
+}
+
+
+class MathApp{
+
+	public static Scanner sc=new Scanner(System.in);
+
+	public static void main(String args[]){
+
+		boolean loop=true;
+		while(loop){
+			menu();
+			switch(getChoice()){
+			case 1:add();break;
+			case 2:sub();break;
+			case 3:mul();break;
+			case 4:div();break;
+			case 5:exitProgram();loop=false;break;
+		}
+	}
+
+
+	public static void add(){
+
+		Math math=new Math(){
+			
+			@Overrite
+			public int calc(int x,int y){
+				return x+y;
+			}
+
+		}
+
+		System.out.println(" Add Numbers ");
+		
+		int num1=getNum();
+		int num2=getNum();
+		
+		int ans=math.calc(num1, num2);
+		
+		display(ans);
+
+
+
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,36 @@
+Northern City
+-----------
+   MENU
+------------
+[1] Add New Student
+[2] Show Students
+------------
+[3] Exit
+----------------
+
+
+students:
+   id,name,address
+
+====================
+
+Student.py
+
+class Student:
+	id,name,address
+
+        constructor:
+	getters& setters
+	to_string()
+
+NCApp.py
+
+Northern City
+-----------
+   MENU
+------------
+[1] Add New Student
+[2] Show Students
+------------
+[3] Exit
+----------------

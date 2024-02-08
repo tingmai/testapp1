@@ -1,0 +1,186 @@
+Python Programming
+-------------------
+
+Data types
+
+- int (integer)
+    Example:
+     	num=10
+	num=1000
+	num=25
+
+- float/double
+	no=3.444422
+	no=5.2342
+
+	
+- string
+	"hello"
+	"mg mg"
+	"innsein"
+	"how is life getting on"
+
+- char
+	'a'
+	'x'
+	'1'
+	' '
+
+- boolean
+	found=1 OR found=True
+	found=0  OR found=False
+
+=====================
+
+Basic  Calculations
+
+how to display messages  on the console ( screen )
+
+print("hello world")
+print('hello world')
+
+=======================
+
+
+print('  MPT Data Pack Sale ')
+print('---------------------')
+print('[1] 300 mb => 500 ks ')
+print('[2] 480 mb => 990 ks ')
+print('[3] 1 GB => 1800 ks  ')
+print('[4] 2 GB  => 3800 ks ')
+print('---------------------')
+
+====================================
+
+#commens
+#num1 is varialbe
+#num2 is variable
+#variable is a name defined by a programmer
+#variable is a memory storage 
+
+print('Basic Calulation ')
+print('----Add numbers   ----')
+
+#accept first input
+x=input('Enter Num1:')
+
+#accept second input
+y=input('Enter Num2:');
+
+ans = int(x) + int (y)
+
+print('The answer is = ',ans)
+
+================================
+
+print('Basic Calulation ')
+print('----Subtract numbers   ----')
+
+#accept first input
+x=int(input('Enter Num1:'))
+
+#accept second input
+y=int(input('Enter Num2:'))
+
+ans = x - y
+
+print('The answer is = ',ans)
+
+
+
+if-statements
+(conditional statements)
+
+1) if-else
+	if con:
+		True Block
+	else:
+		False Block
+2) if-elif
+
+	if con:
+	   True Block
+	elif con:
+	    True Block
+	elif con:
+	...
+	else:
+	   False Block
+
+
+3) nesting if
+
+	if con:
+	   if con:
+	      True Block
+	   else:
+	       False Black
+	else:
+           if con:
+	      True Block
+	   else:
+	       False Black
+	   
+		
+=====================
+
+print("Compare 3 inputs and output the largest.. ")
+print("  Algorithm 1 ")
+x=int(input("Enter Input 1:"))
+y=int(input("Enter input 2:"))
+z=int(input("Enter Input 3:"))
+
+if x>y:
+   l=x
+else:
+   l=y
+
+if z>l:
+   l=z
+
+
+print("The largest no is =",l)
+
+=============================
+
+print("Compare 3 inputs and output the largest.. ")
+print("  Algorithm 2 ")
+x=int(input("Enter Input 1:"))
+y=int(input("Enter input 2:"))
+z=int(input("Enter Input 3:"))
+
+if x>y and x>z:
+   l=x
+elif y>x and y>z:
+   l=y
+else:
+   l=z
+
+  
+print("The largest no is =",l)
+
+=====================
+
+
+print("Compare 3 inputs and output the largest.. ")
+print("  Algorithm 3 ")
+a=int(input("Enter Input 1:"))
+b=int(input("Enter input 2:"))
+c=int(input("Enter Input 3:"))
+
+if a>b:
+    if a>c:
+       l=a
+    else:
+       l=c
+else:
+  if b>c:
+      l=b
+  else:
+      l=c
+
+
+  
+print("The largest no is =",l)
+
+==================

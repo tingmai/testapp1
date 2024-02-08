@@ -1,0 +1,149 @@
+
+Python Tests
+---------------
+indexPage.py
+-----------
+
+import tkinter as tk
+import sqlite3
+from tkinter import messagebox, END, BOTH, VERTICAL, HORIZONTAL, BOTTOM, Y, X, RIGHT, NO, ttk, W
+
+
+class IndexPage:
+
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Index Page")
+        p1 = tk.PanedWindow()
+        p1.pack(fill=BOTH, expand=1)
+        p1.place(x=50,y=150)
+
+
+        # Create a database or connect to an existing one
+        self.conn = sqlite3.connect("db1.db")
+        self.cursor = self.conn.cursor()
+
+        self.name_label = tk.Label(root, text="Show user List")
+        self.name_label.place(x=50, y=50)
+
+        b1= tk.Button(root, text="Createt new user", command=self.create_user)
+        b1.place(x=50,y=100)
+
+
+        scrollbary = tk.Scrollbar(root, orient=VERTICAL)
+        scrollbarx = tk.Scrollbar(root, orient=HORIZONTAL)
+        tree = ttk.Treeview(root, columns=("Id", "Name", "Address","Details","Edit","Delete"), selectmode="extended", height=300,
+                            yscrollcommand=scrollbary.set, xscrollcommand=scrollbarx.set)
+        scrollbary.config(command=tree.yview)
+        scrollbary.pack(side=RIGHT, fill=Y)
+        scrollbarx.config(command=tree.xview)
+        scrollbarx.pack(side=BOTTOM, fill=X)
+
+        tree.heading('Id', text="Id", anchor=W)
+        tree.heading('Name', text="Name", anchor=W)
+        tree.heading('Address', text="Address", anchor=W)
+        tree.heading('Details', text="Details", anchor=W)
+        tree.heading('Edit', text="Edit", anchor=W)
+        tree.heading('Delete', text="Delete", anchor=W)
+
+        tree.column('#0', stretch=NO, minwidth=0, width=0)
+        tree.column('#1', stretch=NO, minwidth=0, width=200)
+        tree.column('#2', stretch=NO, minwidth=0, width=200)
+        tree.column('#3', stretch=NO, minwidth=0, width=200)
+        tree.column('#4', stretch=NO, minwidth=0, width=200)
+        tree.column('#5', stretch=NO, minwidth=0, width=200)
+        tree.column('#6', stretch=NO, minwidth=0, width=200)
+        tree.place(x=50,y=150)
+
+        self.cursor.execute('''SELECT * from users ''');
+        fetch = self.cursor.fetchall()
+        for data in fetch:
+            tree.insert('', 'end', values=(data[0], data[1], data[2],data[3],data[4],data[5]))
+
+    def create_user(self):
+        print("create user page...")
+        self.root.destroy()
+        from createPage import CreatePage
+        index_page_root = tk.Tk()
+        index_page = CreatePage(index_page_root)
+        index_page_root.geometry("600x800")
+        index_page_root.mainloop()
+
+
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = IndexPage(root)
+    root.geometry("1400x800")
+    root.mainloop()
+
+================================================
+
+createPage.py
+------------
+import tkinter as tk
+import sqlite3
+from tkinter import messagebox, BOTH
+
+
+class CreatePage:
+
+    def __init__(self,root):
+        self.root = root
+
+        self.root.title("CRUD Application")
+
+        # Create a database or connect to an existing one
+        self.conn = sqlite3.connect("db1.db")
+        self.cursor = self.conn.cursor()
+
+        self.name_label = tk.Label(root, text="Name:")
+        self.name_label.place(x=50,y=50)
+
+        self.name_entry = tk.Entry(root)
+        self.name_entry.place(x=250,y=50)
+
+        self.address_label = tk.Label(root, text="Address:")
+        self.address_label.place(x=50,y=100)
+
+        self.address_entry = tk.Entry(root)
+        self.address_entry.place(x=250,y=100)
+
+        self.add_button = tk.Button(root, text="Add Student", command=self.add_student)
+        self.add_button.place(x=250,y=150)
+
+    def add_student(self):
+        name = self.name_entry.get()
+        address = self.address_entry.get()
+
+        if name and address:
+            # self.cursor.execute("INSERT INTO students (name, class, marks) VALUES (?, ?, ?)", (name, class, marks))
+            self.cursor.execute("INSERT INTO users (name, address ) VALUES (?, ?)", (name, address))
+            self.conn.commit()
+            self.clear_entries()
+            messagebox.showinfo("Message", "Saving Success...")
+
+            self.root.destroy()
+            from indexPage import IndexPage
+            index_page_root=tk.Tk()
+            index_page=IndexPage(index_page_root)
+            index_page_root.geometry("600x800")
+            index_page_root.mainloop()
+
+
+        else:
+            messagebox.showwarning("Warning", "Please fill in all fields.")
+
+
+
+    def clear_entries(self):
+        self.name_entry.delete(0, tk.END)
+        self.address_entry.delete(0, tk.END)
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = CreatePage(root)
+    root.geometry("600x800")
+    root.mainloop()
+
+
